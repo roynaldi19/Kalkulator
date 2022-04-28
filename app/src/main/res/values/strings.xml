@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Kalkulator</string>
+    <string name="hasil">0</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="mutiply">x</string>
+    <string name="divide">:</string>
+</resources>
