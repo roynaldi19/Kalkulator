@@ -1,7 +1,7 @@
 package com.roynaldi19.kalkulator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.roynaldi19.kalkulator.room.History
 import com.roynaldi19.kalkulator.room.HistoryDataBase
@@ -35,91 +35,135 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_plus.setOnClickListener {
-            val nilai1 = edit_nilai1.text.toString().trim()
-            val nilai2 = edit_nilai2.text.toString().trim()
+            val nilai1 = edit_nilai1.text.toString()
+            val nilai2 = edit_nilai2.text.toString()
             val operator = "+"
-            val hasil = nilai1.toDouble() + nilai2.toDouble()
-            tv_result.text = hasil.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                dataBase.historyDao().addHistory(
-                    History(
-                        0,
-                        nilai1.toDouble(),
-                        nilai2.toDouble(),
-                        operator,
-                        hasil
-                    )
-                )
-                updateRv()
+            when {
+                nilai1.isEmpty() -> {
+                    edit_nilai1.error = "Masih Kosong"
+                }
+                nilai2.isEmpty() -> {
+                    edit_nilai2.error = "Masih Kosong"
+                }
+                else -> {
+                    val hasil = nilai1.toDouble() + nilai2.toDouble()
+                    tv_result.text = hasil.toString()
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataBase.historyDao().addHistory(
+                            History(
+                                0,
+                                nilai1.toDouble(),
+                                nilai2.toDouble(),
+                                operator,
+                                hasil
+                            )
+                        )
+                        updateRv()
+                    }
+
+                }
             }
-
         }
 
         button_minus.setOnClickListener {
-            val nilai1 = edit_nilai1.text.toString().trim()
-            val nilai2 = edit_nilai2.text.toString().trim()
+            val nilai1 = edit_nilai1.text.toString()
+            val nilai2 = edit_nilai2.text.toString()
             val operator = "-"
-            val hasil = nilai1.toDouble() - nilai2.toDouble()
-            tv_result.text = hasil.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                dataBase.historyDao().addHistory(
-                    History(
-                        0,
-                        nilai1.toDouble(),
-                        nilai2.toDouble(),
-                        operator,
-                        hasil
-                    )
-                )
-                updateRv()
+            when {
+                nilai1.isEmpty() -> {
+                    edit_nilai1.error = "Masih Kosong"
+                }
+                nilai2.isEmpty() -> {
+                    edit_nilai2.error = "Masih Kosong"
+                }
+                else -> {
+                    val hasil = nilai1.toDouble() - nilai2.toDouble()
+                    tv_result.text = hasil.toString()
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataBase.historyDao().addHistory(
+                            History(
+                                0,
+                                nilai1.toDouble(),
+                                nilai2.toDouble(),
+                                operator,
+                                hasil
+                            )
+                        )
+                        updateRv()
+                    }
+
+                }
             }
-
         }
 
         button_multiply.setOnClickListener {
-            val nilai1 = edit_nilai1.text.toString().trim()
-            val nilai2 = edit_nilai2.text.toString().trim()
+            val nilai1 = edit_nilai1.text.toString()
+            val nilai2 = edit_nilai2.text.toString()
             val operator = "x"
-            val hasil = nilai1.toDouble() * nilai2.toDouble()
-            tv_result.text = hasil.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                dataBase.historyDao().addHistory(
-                    History(
-                        0,
-                        nilai1.toDouble(),
-                        nilai2.toDouble(),
-                        operator,
-                        hasil
-                    )
-                )
-                updateRv()
+            when {
+                nilai1.isEmpty() -> {
+                    edit_nilai1.error = "Masih Kosong"
+                }
+                nilai2.isEmpty() -> {
+                    edit_nilai2.error = "Masih Kosong"
+                }
+                else -> {
+                    val hasil = nilai1.toDouble() * nilai2.toDouble()
+                    tv_result.text = hasil.toString()
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataBase.historyDao().addHistory(
+                            History(
+                                0,
+                                nilai1.toDouble(),
+                                nilai2.toDouble(),
+                                operator,
+                                hasil
+                            )
+                        )
+                        updateRv()
+                    }
+
+                }
             }
-
         }
 
         button_divide.setOnClickListener {
-            val nilai1 = edit_nilai1.text.toString().trim()
-            val nilai2 = edit_nilai2.text.toString().trim()
+            val nilai1 = edit_nilai1.text.toString()
+            val nilai2 = edit_nilai2.text.toString()
             val operator = ":"
-            val hasil = nilai1.toDouble() / nilai2.toDouble()
-            tv_result.text = hasil.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                dataBase.historyDao().addHistory(
-                    History(
-                        0,
-                        nilai1.toDouble(),
-                        nilai2.toDouble(),
-                        operator,
-                        hasil
-                    )
-                )
-                updateRv()
+            when {
+                nilai1.isEmpty() -> {
+                    edit_nilai1.error = "Masih Kosong"
+                }
+                nilai2.isEmpty() -> {
+                    edit_nilai2.error = "Masih Kosong"
+                }
+                else -> {
+                    val hasil = nilai1.toDouble() / nilai2.toDouble()
+                    tv_result.text = hasil.toString()
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        dataBase.historyDao().addHistory(
+                            History(
+                                0,
+                                nilai1.toDouble(),
+                                nilai2.toDouble(),
+                                operator,
+                                hasil
+                            )
+                        )
+                        updateRv()
+                    }
+
+                }
             }
-
         }
     }
 
@@ -137,6 +181,5 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         updateRv()
     }
-
 
 }
