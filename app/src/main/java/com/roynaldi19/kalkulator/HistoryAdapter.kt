@@ -23,8 +23,8 @@ class HistoryAdapter(
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val history = historys[position]
-        holder.view.text_title.text =
-            "${history.nilai1} ${history.operator} ${history.nilai2} = ${history.hasil}"
+        val text = "${history.nilai1} ${history.operator} ${history.nilai2} = ${history.hasil}"
+        holder.view.text_title.text = text
 
         holder.view.icon_delete.setOnClickListener {
             listener.onDelete(history)
